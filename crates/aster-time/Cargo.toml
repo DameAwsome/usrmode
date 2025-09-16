@@ -1,0 +1,13 @@
+[package]
+name = "aster-time"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+ostd = { path = "../ostd" }
+aster-util = { path = "../aster-util" }
+component = { path = "../component" }
+once_cell = { workspace = true }
