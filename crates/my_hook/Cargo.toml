@@ -1,0 +1,11 @@
+[package]
+name = "my_hook"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+# 构建成静态库和动态库都可以
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+sanitizers = "0.0.11"  # Rust DFSan API

@@ -1,3 +1,4 @@
+
 fn main() {
   // 初始化组件（会触发 aster-time 的 #[init_component]）
   let _ = component::init_all(component::parse_metadata!());

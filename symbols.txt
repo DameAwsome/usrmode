@@ -1,0 +1,25 @@
+0000000000000000 a 
+0000000000004008 B __bss_start
+0000000000004008 b completed.0
+0000000000000000 a crtstuff.c
+0000000000000000 a crtstuff.c
+                 w __cxa_finalize@GLIBC_2.2.5
+0000000000001040 t deregister_tm_clones
+00000000000010b0 t __do_global_dtors_aux
+0000000000003df0 d __do_global_dtors_aux_fini_array_entry
+0000000000004000 d __dso_handle
+0000000000003df8 d _DYNAMIC
+0000000000004008 D _edata
+0000000000004010 B _end
+00000000000010fc t _fini
+00000000000010f0 t frame_dummy
+0000000000003de8 d __frame_dummy_init_array_entry
+0000000000002000 r __FRAME_END__
+0000000000003fe8 d _GLOBAL_OFFSET_TABLE_
+                 w __gmon_start__
+0000000000001000 t _init
+                 w _ITM_deregisterTMCloneTable
+                 w _ITM_registerTMCloneTable
+0000000000000000 a MyHookPass.cpp
+0000000000001070 t register_tm_clones
+0000000000004008 d __TMC_END__

@@ -19,6 +19,7 @@ dependencies = [
  "component",
  "once_cell",
  "ostd",
+ "sanitizers",
 ]
 
 [[package]]
@@ -61,6 +62,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "my_hook"
+version = "0.1.0"
+dependencies = [
+ "sanitizers",
+]
+
+[[package]]
 name = "once_cell"
 version = "1.21.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -96,6 +104,12 @@ name = "rustversion"
 version = "1.0.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
+
+[[package]]
+name = "sanitizers"
+version = "0.0.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8c49350beff8afd36f4c510397e9198c391c59790e9cdc9608e7404712353bc4"
 
 [[package]]
 name = "syn"
