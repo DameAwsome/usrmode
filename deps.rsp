@@ -1,0 +1,13 @@
+target/llvm20/release/deps/libaster_time-47f2e69729fc4201.rlib
+target/llvm20/release/deps/libaster_time-6a00e3f6739d5cb7.rlib
+target/llvm20/release/deps/libaster_time_ffi.rlib
+target/llvm20/release/deps/libaster_util-84fd77a5e767587b.rlib
+target/llvm20/release/deps/libcomponent-7825309155011eac.rlib
+target/llvm20/release/deps/libinventory-443e2ba48f0e693e.rlib
+target/llvm20/release/deps/libonce_cell-d2455ec75a446def.rlib
+target/llvm20/release/deps/libostd-b2c3c2bb7d616757.rlib
+target/llvm20/release/deps/libproc_macro2-30dd1c0184916507.rlib
+target/llvm20/release/deps/libquote-9875fd9ec8748ec5.rlib
+target/llvm20/release/deps/libsanitizers-47a389d64f9394ad.rlib
+target/llvm20/release/deps/libsyn-114f53905e1a86fa.rlib
+target/llvm20/release/deps/libunicode_ident-d90ab847601a2565.rlib

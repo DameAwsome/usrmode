@@ -1,0 +1,108 @@
+[hook] enter aster_time::_::__ctor
+[hook] enter <T as inventory::ErasedNode>::submit
+[hook] exit <T as inventory::ErasedNode>::submit
+[hook] exit aster_time::_::__ctor
+[hook] enter core::ops::function::Fn::call
+[hook] enter aster_time::time_init
+[hook] enter once_cell::imp::OnceCell<T>::initialize
+[hook] enter once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize
+[hook] enter aster_time::clocksource::ClockSource::new
+[hook] exit aster_time::clocksource::ClockSource::new
+[hook] enter once_cell::imp::OnceCell<T>::initialize
+[hook] enter once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize
+[hook] enter aster_time::clocksource::ClockSource::read_cycles
+[hook] enter core::ops::function::Fn::call
+[hook] exit core::ops::function::Fn::call
+[hook] exit aster_time::clocksource::ClockSource::read_cycles
+[hook] enter aster_time::clocksource::ClockSource::calibrate
+[hook] enter aster_time::clocksource::ClockSource::update_last_record
+[hook] enter std::sync::poison::map_result
+[hook] exit std::sync::poison::map_result
+[hook] enter <std::sync::poison::rwlock::RwLockWriteGuard<T> as core::ops::drop::Drop>::drop
+[hook] exit <std::sync::poison::rwlock::RwLockWriteGuard<T> as core::ops::drop::Drop>::drop
+[hook] exit aster_time::clocksource::ClockSource::update_last_record
+[hook] exit aster_time::clocksource::ClockSource::calibrate
+[hook] enter aster_time::read
+[hook] enter once_cell::imp::OnceCell<T>::initialize
+[hook] enter once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] enter core::ops::function::FnOnce::call_once
+[hook] exit core::ops::function::FnOnce::call_once
+[hook] exit once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize
+[hook] enter <aster_time::rtc::DummyRtc as aster_time::rtc::Driver>::read_rtc
+[hook] exit <aster_time::rtc::DummyRtc as aster_time::rtc::Driver>::read_rtc
+[hook] exit aster_time::read
+[hook] enter once_cell::imp::OnceCell<T>::initialize
+[hook] enter once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize
+[hook] enter once_cell::imp::OnceCell<T>::initialize
+[hook] enter once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize::{{closure}}
+[hook] exit once_cell::imp::OnceCell<T>::initialize
+[hook] enter alloc::raw_vec::RawVec<T,A>::grow_one
+[hook] enter alloc::raw_vec::finish_grow
+[hook] exit alloc::raw_vec::finish_grow
+[hook] exit alloc::raw_vec::RawVec<T,A>::grow_one
+[hook] exit aster_time::time_init
+[hook] exit core::ops::function::Fn::call
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::tsc::init_timer::{{closure}}
+[hook] exit aster_time::tsc::init_timer::{{closure}}
+[hook] enter aster_time::get_real_time
+[hook] enter aster_time::read
+[hook] enter <aster_time::rtc::DummyRtc as aster_time::rtc::Driver>::read_rtc
+[hook] exit <aster_time::rtc::DummyRtc as aster_time::rtc::Driver>::read_rtc
+[hook] exit aster_time::read
+[hook] exit aster_time::get_real_time
+[hook] enter aster_time::read
+[hook] enter <aster_time::rtc::DummyRtc as aster_time::rtc::Driver>::read_rtc
+[hook] exit <aster_time::rtc::DummyRtc as aster_time::rtc::Driver>::read_rtc
+[hook] exit aster_time::read
+[hook] enter aster_time::read_start_time
+[hook] exit aster_time::read_start_time
+[hook] enter aster_time::read_monotonic_time
+[hook] enter aster_time::clocksource::ClockSource::read_instant
+[hook] enter aster_time::clocksource::ClockSource::calculate_instant
+[hook] enter std::sync::poison::rwlock::RwLockReadGuard<T>::new
+[hook] exit std::sync::poison::rwlock::RwLockReadGuard<T>::new
+[hook] enter <std::sync::poison::rwlock::RwLockReadGuard<T> as core::ops::drop::Drop>::drop
+[hook] exit <std::sync::poison::rwlock::RwLockReadGuard<T> as core::ops::drop::Drop>::drop
+[hook] enter core::ops::function::Fn::call
+[hook] exit core::ops::function::Fn::call
+[hook] exit aster_time::clocksource::ClockSource::calculate_instant
+[hook] exit aster_time::clocksource::ClockSource::read_instant
+[hook] exit aster_time::read_monotonic_time
+[hook] enter aster_time::default_clocksource
+[hook] exit aster_time::default_clocksource
+[hook] enter aster_time::clocksource::ClockSource::read_cycles
+[hook] enter core::ops::function::Fn::call
+[hook] exit core::ops::function::Fn::call
+[hook] exit aster_time::clocksource::ClockSource::read_cycles
+[hook] enter aster_time::clocksource::ClockSource::last_record
+[hook] enter std::sync::poison::rwlock::RwLockReadGuard<T>::new
+[hook] exit std::sync::poison::rwlock::RwLockReadGuard<T>::new
+[hook] enter <std::sync::poison::rwlock::RwLockReadGuard<T> as core::ops::drop::Drop>::drop
+[hook] exit <std::sync::poison::rwlock::RwLockReadGuard<T> as core::ops::drop::Drop>::drop
+[hook] exit aster_time::clocksource::ClockSource::last_record

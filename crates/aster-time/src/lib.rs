@@ -6,7 +6,6 @@ pub use clocksource::Instant;
 use component::{init_component, ComponentInitError};
 use ostd::sync::Mutex;
 use once_cell::sync::{Lazy, OnceCell};
-use sanitizers::{dfsan::{self, DfsanLabel}, ffi::dfsan::{dfsan_add_label, dfsan_get_label}};
 use rtc::Driver;
 
 mod clocksource;
@@ -59,12 +58,6 @@ fn update_time() {
 
 pub fn read_start_time() -> SystemTime {
   let result = *START_TIME.get().unwrap();
-  unsafe {
-    dfsan_add_label(DfsanLabel::from(3), &result as *const _ as *mut _,  std::mem::size_of::<SystemTime>());
-  
-  let label = dfsan_get_label(result.day as i64);
-  println!("[dfsan] read_start_time result label = {}", label);
-  }
   result
 }
 

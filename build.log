@@ -1,0 +1,50 @@
+warning: /home/user/time_userland/Cargo.toml: unused manifest key: workspace.package.name
+   Compiling proc-macro2 v1.0.101
+   Compiling unicode-ident v1.0.19
+   Compiling inventory v0.3.21
+   Compiling once_cell v1.21.3
+   Compiling sanitizers v0.0.11
+   Compiling aster-util v0.1.0 (/home/user/time_userland/crates/aster-util)
+warning: field `max_multiplier` is never read
+ --> crates/aster-util/src/coeff.rs:4:43
+  |
+4 | pub struct Coeff { mult: u32, shift: u32, max_multiplier: u64 }
+  |            ----- field in this struct     ^^^^^^^^^^^^^^
+  |
+  = note: `Coeff` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `aster-util` (lib) generated 1 warning
+   Compiling ostd v0.1.0 (/home/user/time_userland/crates/ostd)
+   Compiling quote v1.0.40
+   Compiling syn v2.0.106
+   Compiling component-macro v0.1.0 (/home/user/time_userland/crates/component-macro)
+   Compiling component v0.1.0 (/home/user/time_userland/crates/component)
+   Compiling aster-time v0.1.0 (/home/user/time_userland/crates/aster-time)
+warning: unused import: `sanitizers::dfsan`
+ --> crates/aster-time/src/clocksource.rs:3:5
+  |
+3 | use sanitizers::dfsan;
+  |     ^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `once_cell::sync::OnceCell as _OnceCell`
+ --> crates/aster-time/src/tsc.rs:8:5
+  |
+8 | use once_cell::sync::OnceCell as _OnceCell;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated function `try_new` is never used
+ --> crates/aster-time/src/rtc/mod.rs:5:6
+  |
+4 | pub trait Driver {
+  |           ------ associated function in this trait
+5 |   fn try_new() -> Option<Self> where Self: Sized;
+  |      ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `aster-time` (lib) generated 3 warnings (run `cargo fix --lib -p aster-time` to apply 2 suggestions)
+   Compiling app v0.1.0 (/home/user/time_userland/app)
+    Finished `release` profile [optimized] target(s) in 3.17s

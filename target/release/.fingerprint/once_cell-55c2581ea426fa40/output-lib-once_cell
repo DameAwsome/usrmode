@@ -1,0 +1,3 @@
+[MyHookPass] Running on module: once_cell.c6c4d707c0ef7ae4-cgu.0
+[MyHookPass] Visiting function: _ZN63_$LT$once_cell..imp..Guard$u20$as$u20$core..ops..drop..Drop$GT$4drop17hcedb16a5ef1e4b3bE
+[MyHookPass] Visiting function: _ZN9once_cell3imp18initialize_or_wait17hbf1abb0242b0ae55E
