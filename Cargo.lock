@@ -17,6 +17,7 @@ version = "0.1.0"
 dependencies = [
  "aster-util",
  "component",
+ "component-macro",
  "once_cell",
  "ostd",
  "sanitizers",

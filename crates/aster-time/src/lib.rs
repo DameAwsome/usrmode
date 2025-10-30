@@ -3,7 +3,7 @@ use std::time::Duration;
 
 use clocksource::ClockSource;
 pub use clocksource::Instant;
-use component::{init_component, ComponentInitError};
+use component::{init_component,ComponentInitError};
 use ostd::sync::Mutex;
 use once_cell::sync::{Lazy, OnceCell};
 use rtc::Driver;

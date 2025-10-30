@@ -10,5 +10,6 @@ crate-type = ["rlib"]
 sanitizers = "0.0.11"
 ostd = { path = "../ostd" }
 aster-util = { path = "../aster-util" }
+component-macro = { path = "../component-macro" }
 component = { path = "../component" }
 once_cell = { workspace = true }

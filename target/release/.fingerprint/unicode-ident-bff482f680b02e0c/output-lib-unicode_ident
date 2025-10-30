@@ -1,9 +1,0 @@
-[MyHookPass] Running on module: unicode_ident.ff321ff219310e50-cgu.0
-[MyHookPass] Visiting function: _ZN4core4char7methods22_$LT$impl$u20$char$GT$8is_ascii17h5504ba3529e30ddaE
-[MyHookPass] Visiting function: _ZN4core5slice29_$LT$impl$u20$$u5b$T$u5d$$GT$13get_unchecked17h52f9753b2c70080cE
-[MyHookPass] Visiting function: _ZN4core5slice29_$LT$impl$u20$$u5b$T$u5d$$GT$3get17h746d7a901c58025cE
-[MyHookPass] Visiting function: _ZN4core6option15Option$LT$T$GT$9unwrap_or17h27e9b582d28ced9cE
-[MyHookPass] Visiting function: _ZN75_$LT$usize$u20$as$u20$core..slice..index..SliceIndex$LT$$u5b$T$u5d$$GT$$GT$13get_unchecked17he555390132c2bba8E
-[MyHookPass] Visiting function: _ZN75_$LT$usize$u20$as$u20$core..slice..index..SliceIndex$LT$$u5b$T$u5d$$GT$$GT$3get17h7e6e1bd5acd26ffeE
-[MyHookPass] Visiting function: _ZN13unicode_ident12is_xid_start17h7a7f61def71a981aE
-[MyHookPass] Visiting function: _ZN13unicode_ident15is_xid_continue17h296cdde42bf0873fE

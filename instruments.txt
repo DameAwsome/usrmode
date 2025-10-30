@@ -1,0 +1,9 @@
+clang++-20 -fPIC -shared $(pwd)/MyHookPass.cpp -o $(pwd)/libMyHookPass.so $(llvm-config-20 --cxxflags --ldflags --libs --system-libs)
+clang-20 -fPIC -c hook_runtime.c -o hook_runtime.o && ar rcs libhook_runtime.a hook_runtime.o
+cargo clean
+cargo +nightly-2025-03-11 build -p app
+cargo clean -p aster-time -p app
+RUSTC_WRAPPER=/home/user/time_userland/rustc-wrap.sh cargo +nightly-2025-03-11 build -p app
+llvm-nm-20 -C ./target/debug/app | egrep ' my_(func_entry|func_exit|load_hook|store_hook)$' || echo "no_hook_calls"
+./target/debug/app 2>hook.err
+rustfilt < hook.err > hook.readable.err
