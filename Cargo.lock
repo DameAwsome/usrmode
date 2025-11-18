@@ -9,6 +9,7 @@ dependencies = [
  "aster-time",
  "component",
  "ostd",
+ "test-load-store",
 ]
 
 [[package]]
@@ -115,6 +116,10 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
+
+[[package]]
+name = "test-load-store"
+version = "0.1.0"
 
 [[package]]
 name = "unicode-ident"

@@ -6,6 +6,7 @@ members = [
   "crates/component-macro",
   "crates/aster-time",
   "crates/aster-time-ffi",
+  "crates/test-load-store",
   "app",
 ]
 resolver = "2"
