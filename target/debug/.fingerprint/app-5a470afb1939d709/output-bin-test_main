@@ -1,0 +1,23 @@
+[WRAPPER] FINAL_LINK=yes COMPILE_DFSAN=false LINKER=clang-20 DFSAN_LINK_ARG=YES
+[MyHookPass] Running on module: 3joz3vdyh5a9wl52kkz89i8yj
+[MyHookPass] Visiting function: _ZN3std2rt10lang_start17h3aea0ce0f68222a9E
+[MyHookPass] Visiting function: _ZN3std2rt10lang_start28_$u7b$$u7b$closure$u7d$$u7d$17hb5fc7eeeb94bcdbfE
+[MyHookPass] Visiting function: _ZN3std3sys9backtrace28__rust_begin_short_backtrace17h12ca6660dbcb65b9E
+[MyHookPass] Visiting function: _ZN4core3ops8function6FnOnce40call_once$u7b$$u7b$vtable.shim$u7d$$u7d$17h803c610c023d025dE
+[MyHookPass] Visiting function: _ZN4core3ops8function6FnOnce9call_once17h4443bca974355c0dE
+[MyHookPass] Visiting function: _ZN4core3ops8function6FnOnce9call_once17h8567fed4376a25d6E
+[MyHookPass] Visiting function: _ZN4core3ptr85drop_in_place$LT$std..rt..lang_start$LT$$LP$$RP$$GT$..$u7b$$u7b$closure$u7d$$u7d$$GT$17h07133ce5b9f8b90cE
+[MyHookPass] Visiting function: _ZN54_$LT$$LP$$RP$$u20$as$u20$std..process..Termination$GT$6report17h619e8ce0ba80772dE
+[MyHookPass] Visiting function: _ZN9test_main4main17h6f0813c02e470876E
+[MyHookPass] Visiting function: main
+[MyHookPass] Running on module: 3joz3vdyh5a9wl52kkz89i8yj
+[MyHookPass] Visiting function: _ZN3std2rt10lang_start17h3aea0ce0f68222a9E
+[MyHookPass] Visiting function: _ZN3std2rt10lang_start28_$u7b$$u7b$closure$u7d$$u7d$17hb5fc7eeeb94bcdbfE
+[MyHookPass] Visiting function: _ZN3std3sys9backtrace28__rust_begin_short_backtrace17h12ca6660dbcb65b9E
+[MyHookPass] Visiting function: _ZN4core3ops8function6FnOnce40call_once$u7b$$u7b$vtable.shim$u7d$$u7d$17h803c610c023d025dE
+[MyHookPass] Visiting function: _ZN4core3ops8function6FnOnce9call_once17h4443bca974355c0dE
+[MyHookPass] Visiting function: _ZN4core3ops8function6FnOnce9call_once17h8567fed4376a25d6E
+[MyHookPass] Visiting function: _ZN4core3ptr85drop_in_place$LT$std..rt..lang_start$LT$$LP$$RP$$GT$..$u7b$$u7b$closure$u7d$$u7d$$GT$17h07133ce5b9f8b90cE
+[MyHookPass] Visiting function: _ZN54_$LT$$LP$$RP$$u20$as$u20$std..process..Termination$GT$6report17h619e8ce0ba80772dE
+[MyHookPass] Visiting function: _ZN9test_main4main17h6f0813c02e470876E
+[MyHookPass] Visiting function: main
