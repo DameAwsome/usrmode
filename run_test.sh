@@ -34,13 +34,14 @@ echo "✓ 清理完成"
 
 echo ""
 echo "=========================================="
-echo "Step 4: 首次编译（不使用 wrapper）"
+echo "Step 4: 首次编译（不使用 wrapper，debug 模式）"
 echo "=========================================="
-cargo +nightly-2025-03-11 build --bin test_main || {
+# 明确使用 debug 模式（默认就是 debug，但显式指定更清楚）
+cargo +nightly-2025-03-11 build --bin test_main --profile dev 2>&1 | grep -v "warning:" || {
     echo "错误: 首次编译失败"
     exit 1
 }
-echo "✓ 首次编译完成"
+echo "✓ 首次编译完成（debug 模式）"
 
 echo ""
 echo "=========================================="
@@ -69,9 +70,10 @@ echo "使用临时 wrapper: $TMP_WRAPPER"
 echo "PASS=$(pwd)/libMyHookPass.so"
 echo "RUNTIME=$(pwd)/libhook_runtime.a"
 
-RUSTC_WRAPPER="$TMP_WRAPPER" cargo +nightly-2025-03-11 build --bin test_main || {
+RUSTC_WRAPPER="$TMP_WRAPPER" cargo +nightly-2025-03-11 build --bin test_main --profile dev 2>&1 | tee /tmp/cargo-build.log || {
     rm -f "$TMP_WRAPPER"
     echo "错误: 插桩编译失败"
+    echo "查看编译日志: /tmp/cargo-build.log"
     exit 1
 }
 rm -f "$TMP_WRAPPER"
@@ -87,8 +89,23 @@ echo ""
 echo "=========================================="
 echo "Step 8: 运行测试并捕获 hook 输出"
 echo "=========================================="
+# 检查二进制文件是否存在
+if [ ! -f "./target/debug/test_main" ]; then
+    echo "错误: ./target/debug/test_main 不存在"
+    echo "请检查编译是否成功"
+    exit 1
+fi
+
+echo "运行: ./target/debug/test_main"
 ./target/debug/test_main 2> hook_test.err
-echo "✓ Hook 输出已保存到 hook_test.err"
+HOOK_SIZE=$(wc -c < hook_test.err 2>/dev/null || echo "0")
+echo "✓ Hook 输出已保存到 hook_test.err (大小: ${HOOK_SIZE} 字节)"
+
+if [ "$HOOK_SIZE" -eq 0 ]; then
+    echo "警告: hook_test.err 是空的，可能没有插桩输出"
+    echo "检查二进制文件是否包含 hook 符号..."
+    llvm-nm-20 -C ./target/debug/test_main 2>/dev/null | grep -E 'my_(func_entry|func_exit|load_hook|store_hook)' | head -5 || echo "未找到 hook 符号"
+fi
 
 echo ""
 echo "=========================================="
