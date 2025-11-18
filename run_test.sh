@@ -1,27 +1,102 @@
 #!/bin/bash
-# 完整的测试和比对脚本
+# 完整的测试和比对脚本（按照 instruments.txt 的流程，使用 debug 模式）
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
 echo "=========================================="
-echo "Step 1: 编译测试程序"
+echo "Step 1: 编译 LLVM Pass"
 echo "=========================================="
-cargo build --bin test_main --release
+clang++-20 -fPIC -shared "$(pwd)/MyHookPass.cpp" -o "$(pwd)/libMyHookPass.so" $(llvm-config-20 --cxxflags --ldflags --libs --system-libs) || {
+    echo "错误: 编译 LLVM Pass 失败"
+    exit 1
+}
+echo "✓ libMyHookPass.so 编译完成"
 
 echo ""
 echo "=========================================="
-echo "Step 2: 运行测试并捕获 hook 输出"
+echo "Step 2: 编译 hook_runtime"
 echo "=========================================="
-./target/release/test_main 2> hook_test.err
-echo "Hook 输出已保存到 hook_test.err"
+clang-20 -fPIC -c hook_runtime.c -o hook_runtime.o && ar rcs libhook_runtime.a hook_runtime.o || {
+    echo "错误: 编译 hook_runtime 失败"
+    exit 1
+}
+echo "✓ libhook_runtime.a 编译完成"
 
 echo ""
 echo "=========================================="
-echo "Step 3: 解码符号名（如果 rustfilt 可用）"
+echo "Step 3: 清理构建缓存"
+echo "=========================================="
+cargo clean
+echo "✓ 清理完成"
+
+echo ""
+echo "=========================================="
+echo "Step 4: 首次编译（不使用 wrapper）"
+echo "=========================================="
+cargo +nightly-2025-03-11 build --bin test_main || {
+    echo "错误: 首次编译失败"
+    exit 1
+}
+echo "✓ 首次编译完成"
+
+echo ""
+echo "=========================================="
+echo "Step 5: 清理特定包"
+echo "=========================================="
+cargo clean -p test-load-store -p app
+echo "✓ 清理完成"
+
+echo ""
+echo "=========================================="
+echo "Step 6: 使用 RUSTC_WRAPPER 重新编译（插桩）"
+echo "=========================================="
+# 检查 rustc-wrap.sh 是否存在
+if [ ! -f "rustc-wrap.sh" ]; then
+    echo "错误: rustc-wrap.sh 不存在"
+    echo "请确保 rustc-wrap.sh 在项目根目录"
+    exit 1
+fi
+
+# 创建临时 wrapper，使用当前目录的路径
+TMP_WRAPPER="/tmp/rustc-wrap-test-$$.sh"
+sed "s|/home/user/time_userland|$(pwd)|g" rustc-wrap.sh > "$TMP_WRAPPER"
+chmod +x "$TMP_WRAPPER"
+
+echo "使用临时 wrapper: $TMP_WRAPPER"
+echo "PASS=$(pwd)/libMyHookPass.so"
+echo "RUNTIME=$(pwd)/libhook_runtime.a"
+
+RUSTC_WRAPPER="$TMP_WRAPPER" cargo +nightly-2025-03-11 build --bin test_main || {
+    rm -f "$TMP_WRAPPER"
+    echo "错误: 插桩编译失败"
+    exit 1
+}
+rm -f "$TMP_WRAPPER"
+echo "✓ 插桩编译完成"
+
+echo ""
+echo "=========================================="
+echo "Step 7: 检查 hook 符号"
+echo "=========================================="
+llvm-nm-20 -C ./target/debug/test_main | egrep ' my_(func_entry|func_exit|load_hook|store_hook)$' || echo "警告: 未找到 hook 符号"
+
+echo ""
+echo "=========================================="
+echo "Step 8: 运行测试并捕获 hook 输出"
+echo "=========================================="
+./target/debug/test_main 2> hook_test.err
+echo "✓ Hook 输出已保存到 hook_test.err"
+
+echo ""
+echo "=========================================="
+echo "Step 9: 解码符号名"
 echo "=========================================="
 if command -v rustfilt >/dev/null 2>&1; then
     rustfilt < hook_test.err > hook_test.readable.err
-    echo "可读版本已保存到 hook_test.readable.err"
+    echo "✓ 可读版本已保存到 hook_test.readable.err"
     HOOK_FILE="hook_test.readable.err"
 else
     echo "警告: rustfilt 未安装，使用原始输出"
@@ -31,13 +106,13 @@ fi
 
 echo ""
 echo "=========================================="
-echo "Step 4: 分析插桩结果"
+echo "Step 10: 分析插桩结果"
 echo "=========================================="
 python3 analyze_hooks.py "$HOOK_FILE"
 
 echo ""
 echo "=========================================="
-echo "Step 5: 显示测试函数相关的 hook 输出"
+echo "Step 11: 显示测试函数相关的 hook 输出"
 echo "=========================================="
 echo "只显示 test_load_store 相关的函数:"
 if [ -f "hook_test.readable.err" ]; then
