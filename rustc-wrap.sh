@@ -35,8 +35,7 @@ fi
 
 # 跳过 proc-macro / build script / component
 if [[ "$JOIN" == *"--crate-type=proc-macro"* ]] || [[ "$JOIN" == *" --crate-type proc-macro"* ]] \
-   || [[ "$JOIN" == *"--crate-name=build_script_build"* ]] || [[ "$JOIN" == *" --crate-name build_script_build"* ]] \
-   || [[ "$JOIN" == *"--crate-name=component"* ]] || [[ "$JOIN" == *" --crate-name component "* ]]; then
+   || [[ "$JOIN" == *"--crate-name=build_script_build"* ]] || [[ "$JOIN" == *" --crate-name build_script_build"* ]] ; then
   _record "SKIP: proc-macro/build-script/component"
   exec "$REAL" "${ARGS[@]}"
 fi

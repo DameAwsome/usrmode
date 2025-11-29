@@ -33,6 +33,25 @@ struct MyHookPass : PassInfoMixin<MyHookPass> {
         for (Function &F : M) {
             if (F.isDeclaration()) continue;
 
+            // 检查函数是否已经被插桩过（通过检查入口块是否已经有 hook 调用）
+            BasicBlock &entryBB = F.getEntryBlock();
+            bool alreadyInstrumented = false;
+            for (Instruction &I : entryBB) {
+                if (auto *CI = dyn_cast<CallInst>(&I)) {
+                    if (Function *Callee = CI->getCalledFunction()) {
+                        if (Callee->getName() == "my_func_entry") {
+                            alreadyInstrumented = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (alreadyInstrumented) {
+                errs() << "[MyHookPass] Skipping already instrumented function: " << F.getName() << "\n";
+                continue;
+            }
+
             errs() << "[MyHookPass] Visiting function: " << F.getName() << "\n";
 
             Constant *fnameConst = ConstantDataArray::getString(Ctx, F.getName(), true);
@@ -47,7 +66,6 @@ struct MyHookPass : PassInfoMixin<MyHookPass> {
 
             // entry
             {
-                BasicBlock &entryBB = F.getEntryBlock();
                 IRBuilder<> B(&*entryBB.getFirstInsertionPt());
                 B.CreateCall(funcEntry, {fnamePtr});
             }
@@ -63,6 +81,20 @@ struct MyHookPass : PassInfoMixin<MyHookPass> {
             // load/store/mem* hooks
             for (inst_iterator I = inst_begin(F), E = inst_end(F); I != E; ++I) {
                 Instruction *Inst = &*I;
+
+                // 检查这个指令是否已经被插桩过（通过检查后续指令是否是 hook 调用）
+                bool alreadyInstrumented = false;
+                if (Inst->getNextNode()) {
+                    if (auto *CI = dyn_cast<CallInst>(Inst->getNextNode())) {
+                        if (Function *Callee = CI->getCalledFunction()) {
+                            if (Callee->getName() == "my_load_hook" || 
+                                Callee->getName() == "my_store_hook") {
+                                alreadyInstrumented = true;
+                            }
+                        }
+                    }
+                }
+                if (alreadyInstrumented) continue;
 
                 if (auto *LI = dyn_cast<LoadInst>(Inst)) {
                     IRBuilder<> B(Inst);
